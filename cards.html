@@ -243,6 +243,52 @@
   opacity: 1;
 }
 
+.mobile-menu-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+
+.mobile-menu-content a {
+  color: white;
+  text-decoration: none;
+  font-size: 24px;
+  margin: 15px 0;
+  padding: 10px;
+  transition: all 0.3s;
+}
+
+.mobile-menu-content a:hover {
+  color: rgb(33, 33, 152);
+}
+
+/* Media queries for navbar */
+@media (max-width: 768px) {
+  .navbar a {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .desktop-menu {
+    display: none;
+  }
+  
+  .hamburger-icon {
+    display: block;
+  }
+
+  .navbar {
+    justify-content: center;
+    gap: 10px;
+    padding: 8px 15px;
+    left: 12%;
+  }
+}
+
 /* Underline Effect for navbar links */
 .underline-fx {
   color: darkblue;
@@ -384,7 +430,25 @@
       </div>
       
       <!-- IT Head -->
-
+      <div class="team-card">
+        <div class="holographic-card">
+          <div class="card-img">
+            <img src="https://syntaxia.sju.edu.in/images/team/zaidh.webp" alt="IT Head">
+          </div>
+          <div class="card-content">
+            <div>
+              <div style="font-size: large;text-align: center;" class="role">
+                Logistics Head</div>
+              <div  style="text-align: center;" class="name">Zaidh</div>
+            </div>
+            <div class="social-links">
+              <a href="#"><i class="fab fa-linkedin"></i></a>
+              <a href="#"><i class="fab fa-github"></i></a>
+              <a href="#"><i class="fas fa-envelope"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
       
       <!-- Design Head -->
       <div class="team-card">
@@ -409,6 +473,26 @@
         </div>
       </div>
       
+      <!-- Logistics Head -->
+      <div class="team-card">
+        <div class="holographic-card">
+          <div class="card-img">
+            <img src="https://media.istockphoto.com/id/1303206558/photo/headshot-portrait-of-smiling-businessman-talk-on-video-call.jpg?s=612x612&w=0&k=20&c=hMJhVHKeTIznZgOKhtlPQEdZqb0lJ5Nekz1A9f8sPV8=" alt="Logistics Head">
+          </div>
+          <div class="card-content">
+            <div>
+              <div style="font-size: large;text-align: center;" class="role">
+                Logistics Head</div>
+              <div  style="text-align: center;" class="name">Casey Morgan </div>
+            </div>
+            <div class="social-links">
+              <a href="#"><i class="fab fa-linkedin"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-github"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
       
       <!-- Marketing Head -->
       <div class="team-card">
@@ -452,7 +536,14 @@
   });
   
   // Close menu when clicking a link
-  
+  const mobileLinks = document.querySelectorAll('.mobile-menu-content a');
+  mobileLinks.forEach(link => {
+    link.addEventListener('click', function() {
+      mobileMenu.classList.remove('active');
+      hamburger.classList.remove('change');
+      document.body.style.overflow = '';
+    });
+  });
 });
 </script>
 </html>
