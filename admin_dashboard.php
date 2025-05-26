@@ -189,7 +189,81 @@ $recentRegistrations = $recentQuery->fetchAll(PDO::FETCH_ASSOC);
 </div>
     </div>
 
-
+    <script>
+        // Event Type Chart
+        const eventTypeCtx = document.getElementById('eventTypeChart').getContext('2d');
+        const eventTypeChart = new Chart(eventTypeCtx, {
+            type: 'pie',
+            data: {
+                labels: [<?php echo implode(', ', array_map(function($item) { return '"' . $item['event_type'] . '"'; }, $eventTypeData)); ?>],
+                datasets: [{
+                    data: [<?php echo implode(', ', array_map(function($item) { return $item['count']; }, $eventTypeData)); ?>],
+                    backgroundColor: [
+                        '#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', '#FF9F40'
+                    ]
+                }]
+            }
+        });
+        
+        // Event Name Chart
+        const eventNameCtx = document.getElementById('eventNameChart').getContext('2d');
+        const eventNameChart = new Chart(eventNameCtx, {
+            type: 'bar',
+            data: {
+                labels: [<?php echo implode(', ', array_map(function($item) { return '"' . $item['event_name'] . '"'; }, $eventNameData)); ?>],
+                datasets: [{
+                    label: 'Registrations',
+                    data: [<?php echo implode(', ', array_map(function($item) { return $item['count']; }, $eventNameData)); ?>],
+                    backgroundColor: '#36A2EB'
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+        
+        // Daily Registrations Chart
+        const dailyCtx = document.getElementById('dailyRegistrationsChart').getContext('2d');
+        const dailyChart = new Chart(dailyCtx, {
+            type: 'line',
+            data: {
+                labels: [<?php echo implode(', ', array_map(function($item) { return '"' . $item['date'] . '"'; }, $dailyData)); ?>],
+                datasets: [{
+                    label: 'Registrations',
+                    data: [<?php echo implode(', ', array_map(function($item) { return $item['count']; }, $dailyData)); ?>],
+                    borderColor: '#4BC0C0',
+                    tension: 0.1,
+                    fill: false
+                }]
+            }
+        });
+        
+        // College Chart
+        const collegeCtx = document.getElementById('collegeChart').getContext('2d');
+        const collegeChart = new Chart(collegeCtx, {
+            type: 'horizontalBar',
+            data: {
+                labels: [<?php echo implode(', ', array_map(function($item) { return '"' . $item['college_name'] . '"'; }, $collegeData)); ?>],
+                datasets: [{
+                    label: 'Registrations',
+                    data: [<?php echo implode(', ', array_map(function($item) { return $item['count']; }, $collegeData)); ?>],
+                    backgroundColor: '#9966FF'
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                scales: {
+                    x: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
