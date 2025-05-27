@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Registration Stats</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #4CAF50;
+            --secondary-color: #2196F3;
+            --background-color: #f4f4f4;
+            --text-color: #333;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            animation: fade-in 0.5s ease-out;
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            position: relative;
+            font-size: 2.5em;
+            animation: slide-down 0.7s ease-out;
+        }
+
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background-color: var(--secondary-color);
+        }
+
+        #event-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin-top: 20px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        #event-table th, #event-table td {
+            padding: 12px 15px;
+            text-align: left;
+            transition: all 0.3s ease;
+        }
+
+        #event-table th {
+            background-color: var(--primary-color);
+            color: white;
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        #event-table tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+
+        #event-table tr:hover {
+            background-color: #e9ecef;
+            transform: scale(1.01);
+        }
+
+        #event-table td {
+            border-bottom: 1px solid #ddd;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 20px;
+            color: var(--secondary-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .loading i {
+            font-size: 2em;
+            margin-right: 10px;
+            animation: spin 1s linear infinite;
+        }
+
+
+            #event-table {
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Event Registration Statistics</h1>
+        <div id="loading" class="loading">
+            <i class="fas fa-spinner"></i>
+            Loading event data...
+        </div>
+        <table id="event-table">
+            <thead>
+                <tr>
+                    <th>Event Name</th>
+                    <th>Total Registrations</th>
+                    <th>Total Money Received (₹)</th>
+                </tr>
+            </thead>
+            <tbody id="event-data">
+                <!-- Data will be dynamically inserted here -->
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>
