@@ -133,6 +133,15 @@ $registrations = $query->fetchAll(PDO::FETCH_ASSOC);
                     <?php if (count($registrations) > 0): ?>
                         <?php foreach ($registrations as $reg): ?>
                             <tr>
+                                <td><?php echo $reg['id']; ?></td>
+                                <td><?php echo htmlspecialchars($reg['full_name']); ?></td>
+                                <td><?php echo htmlspecialchars($reg['email']); ?></td>
+                                <td><?php echo htmlspecialchars($reg['phone']); ?></td>
+                                <td><?php echo htmlspecialchars($reg['college_name']); ?></td>
+                                <td><?php echo htmlspecialchars($reg['event_name']); ?></td>
+                                <td><?php echo htmlspecialchars($reg['event_type']); ?></td>
+                                <td>₹<?php echo $reg['event_price']; ?></td>
+                                <td><?php echo htmlspecialchars($reg['transaction_id']); ?></td>
                                 <td><?php echo date('M d, Y H:i', strtotime($reg['registration_date'])); ?></td>
                                 <td>
                                     <?php if (!empty($reg['screenshot_path'])): ?>
