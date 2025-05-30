@@ -10,8 +10,8 @@ if (isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] === true
 // Process login
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Simple admin authentication - in production, use proper authentication
-    $admin_username = 'admin';
-    $admin_password = 'admin123'; 
+    $admin_username = 'username';
+    $admin_password = 'pass'; 
     
     if ($_POST['username'] === $admin_username && $_POST['password'] === $admin_password) {
         $_SESSION['admin_logged_in'] = true;
