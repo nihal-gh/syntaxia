@@ -183,7 +183,22 @@ $dailyRevenueData = $dailyQuery->fetchAll(PDO::FETCH_ASSOC);
                         <tbody>
                             <?php if (count($eventRevenueData) > 0): ?>
                                 <?php foreach ($eventRevenueData as $event): ?>
-                                    
+                                    <tr>
+                                        <td><?php echo htmlspecialchars($event['event_name']); ?></td>
+                                        <td><?php echo htmlspecialchars($event['event_type']); ?></td>
+                                        <td><?php echo $event['registrations']; ?></td>
+                                        <td>₹<?php echo number_format($event['revenue'], 2); ?></td>
+                                        <td>₹<?php echo number_format($event['revenue'] / $event['registrations'], 2); ?></td>
+                                        <td><?php echo number_format(($event['revenue'] / $totalRevenue) * 100, 2); ?>%</td>
+                                        <td><?php echo date('M d, Y', strtotime($event['first_registration'])); ?></td>
+                                        <td><?php echo date('M d, Y', strtotime($event['last_registration'])); ?></td>
+                                        <td>
+                                            <a href="event_specific_report.php" class="btn btn-sm btn-info" onclick="document.getElementById('event_<?php echo md5($event['event_name']); ?>').submit(); return false;">View Details</a>
+                                            <form id="event_<?php echo md5($event['event_name']); ?>" action="event_specific_report.php" method="post" style="display: none;">
+                                                <input type="hidden" name="event" value="<?php echo htmlspecialchars($event['event_name']); ?>">
+                                            </form>
+                                        </td>
+                                    </tr>
                                 <?php endforeach; ?>
                             <?php else: ?>
                                 <tr>
