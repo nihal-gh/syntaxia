@@ -217,7 +217,31 @@ $dailyRevenueData = $dailyQuery->fetchAll(PDO::FETCH_ASSOC);
         </div>
     </div>
 
-
+    <script>
+        // Daily Revenue Chart
+        const dailyRevenueCtx = document.getElementById('dailyRevenueChart').getContext('2d');
+        const dailyRevenueChart = new Chart(dailyRevenueCtx, {
+            type: 'line',
+            data: {
+                labels: [<?php echo implode(', ', array_map(function($item) { return '"' . $item['date'] . '"'; }, $dailyRevenueData)); ?>],
+                datasets: [{
+                    label: 'Revenue (₹)',
+                    data: [<?php echo implode(', ', array_map(function($item) { return $item['revenue']; }, $dailyRevenueData)); ?>],
+                    borderColor: '#4BC0C0',
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    tension: 0.1,
+                    fill: true
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
