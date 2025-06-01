@@ -110,7 +110,43 @@ $dailyRevenueData = $dailyQuery->fetchAll(PDO::FETCH_ASSOC);
         
         <!-- Date Range Filter -->
         <div class="card mb-4">
-
+            <div class="card-body">
+                <form method="get" class="row g-3">
+                    <div class="col-md-4">
+                        <label for="start_date" class="form-label">Start Date</label>
+                        <input type="date" class="form-control" id="start_date" name="start_date" value="<?php echo $startDate; ?>">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="end_date" class="form-label">End Date</label>
+                        <input type="date" class="form-control" id="end_date" name="end_date" value="<?php echo $endDate; ?>">
+                    </div>
+                    <div class="col-md-4 d-flex align-items-end">
+                        <button type="submit" class="btn btn-primary w-100">Apply Filter</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <!-- Summary Cards -->
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <div class="card text-white bg-primary">
+                    <div class="card-body">
+                        <h5 class="card-title">Total Registrations</h5>
+                        <h2 class="card-text"><?php echo $totalRegistrations; ?></h2>
+                        <p class="card-text">From <?php echo date('M d, Y', strtotime($startDate)); ?> to <?php echo date('M d, Y', strtotime($endDate)); ?></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card text-white bg-success">
+                    <div class="card-body">
+                        <h5 class="card-title">Total Revenue</h5>
+                        <h2 class="card-text">₹<?php echo number_format($totalRevenue, 2); ?></h2>
+                        <p class="card-text">From <?php echo date('M d, Y', strtotime($startDate)); ?> to <?php echo date('M d, Y', strtotime($endDate)); ?></p>
+                    </div>
+                </div>
+            </div>
         </div>
         
         <!-- Daily Revenue Chart -->
