@@ -238,7 +238,45 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['event'])) {
             <a href="export_event_registrations.php?event=<?php echo urlencode($selectedEvent); ?>" class="btn btn-success">Export to CSV</a>
         </div>
         
-
+        <script>
+            // Daily Registrations Chart
+            const dailyCtx = document.getElementById('dailyChart').getContext('2d');
+            const dailyChart = new Chart(dailyCtx, {
+                type: 'line',
+                data: {
+                    labels: [<?php echo implode(', ', array_map(function($item) { return '"' . $item['date'] . '"'; }, $dailyData)); ?>],
+                    datasets: [{
+                        label: 'Registrations',
+                        data: [<?php echo implode(', ', array_map(function($item) { return $item['count']; }, $dailyData)); ?>],
+                        borderColor: '#4BC0C0',
+                        tension: 0.1,
+                        fill: false
+                    }]
+                }
+            });
+            
+            // College Chart
+            const collegeCtx = document.getElementById('collegeChart').getContext('2d');
+            const collegeChart = new Chart(collegeCtx, {
+                type: 'bar',
+                data: {
+                    labels: [<?php echo implode(', ', array_map(function($item) { return '"' . $item['college_name'] . '"'; }, $collegeData)); ?>],
+                    datasets: [{
+                        label: 'Registrations',
+                        data: [<?php echo implode(', ', array_map(function($item) { return $item['count']; }, $collegeData)); ?>],
+                        backgroundColor: '#9966FF'
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    scales: {
+                        x: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        </script>
         <?php endif; ?>
     </div>
     
