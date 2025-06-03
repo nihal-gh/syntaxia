@@ -112,7 +112,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['event'])) {
         <h1 class="mb-4">Event-Specific Report</h1>
         
         <!-- Event Selection Form -->
-
+        <div class="card mb-4">
+            <div class="card-body">
+                <form method="post" class="row g-3">
+                    <div class="col-md-8">
+                        <select name="event" class="form-select" required>
+                            <option value="">Select an Event</option>
+                            <?php foreach ($events as $event): ?>
+                                <option value="<?php echo htmlspecialchars($event); ?>" <?php echo $selectedEvent === $event ? 'selected' : ''; ?>>
+                                    <?php echo htmlspecialchars($event); ?>
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <button type="submit" class="btn btn-primary w-100">Generate Report</button>
+                    </div>
+                </form>
+            </div>
+        </div>
         
         <?php if ($eventData): ?>
         <!-- Event Summary -->
